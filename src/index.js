@@ -19,7 +19,13 @@ const router = new Router();
 
 app.use(compress());
 app.use(cors());
-app.use(body());
+app.use(
+  body({
+    jsonLimit: "64mb",
+    formLimit: "64mb",
+    textLimit: "64mb",
+  })
+);
 
 router.post("/events/search", async (ctx, next) => {
   try {
