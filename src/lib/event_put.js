@@ -62,7 +62,7 @@ async function event_put({
     // go to event checks
     setImmediate(() => {});
 
-    return true;
+    return event_id;
   } catch (err) {
     console.error(err);
 

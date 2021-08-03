@@ -1,2 +1,1 @@
-# data-labelling-service
-dls-kuma
+# Data Labelling Service

@@ -42,7 +42,7 @@ router.post("/events/search", async (ctx, next) => {
 router.post("/events", async (ctx, next) => {
   try {
     ctx.response.body = {
-      result: (await event_put(ctx.request.body)) || false,
+      result: (await event_put(ctx.request.body)) || null,
     };
 
     await next();
