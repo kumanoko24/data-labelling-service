@@ -17,18 +17,34 @@ the_db.createIndex({
   },
 });
 
-// const couchdb = new PouchDB(process.env.COUCHDB_BASE_URL + "/" + db_name, {
-//   auth: {
-//     username: process.env.COUCHDB_UN,
-//     password: process.env.COUCHDB_PW,
-//   },
-// });
+if (
+  process.env.DLS_COUCHDB_UN !== undefined &&
+  process.env.DLS_COUCHDB_UN !== null &&
+  process.env.DLS_COUCHDB_UN !== "" &&
+  process.env.DLS_COUCHDB_PW !== undefined &&
+  process.env.DLS_COUCHDB_PW !== null &&
+  process.env.DLS_COUCHDB_PW !== "" &&
+  process.env.DLS_COUCHDB_URL !== undefined &&
+  process.env.DLS_COUCHDB_URL !== null &&
+  process.env.DLS_COUCHDB_URL !== ""
+) {
+  try {
+    const couchdb = new PouchDB(process.env.DLS_COUCHDB_URL + "/" + db_name, {
+      auth: {
+        username: process.env.DLS_COUCHDB_UN,
+        password: process.env.DLS_COUCHDB_PW,
+      },
+    });
 
-// couchdb.setMaxListeners(0);
+    couchdb.setMaxListeners(0);
 
-// the_db.sync(couchdb, {
-//   live: true,
-//   retry: true,
-// });
+    the_db.sync(couchdb, {
+      live: true,
+      retry: true,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 module.exports = the_db;
