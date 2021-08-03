@@ -8,13 +8,23 @@
     "prettier": "^2.3.2"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.0",
     "bottleneck": "^2.19.5",
     "dotenv": "^10.0.0",
     "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-compress": "^5.0.1",
     "lodash": "^4.17.21",
     "nanoid": "^3.1.23",
     "node-cache": "^5.1.2",
     "pouchdb": "^7.2.2",
     "pouchdb-find": "^7.2.2"
+  },
+  "scripts": {
+    "format": "prettier --write ./src",
+    "start": "node ./src/index.js",
+    "build": "echo build",
+    "reset-db": "rm -rf ./dls_*"
   }
 }
