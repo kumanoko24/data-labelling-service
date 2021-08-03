@@ -7,6 +7,12 @@ the_db.setMaxListeners(0);
 
 the_db.createIndex({
   index: {
+    fields: ["event_id"],
+  },
+});
+
+the_db.createIndex({
+  index: {
     fields: ["event_type"],
   },
 });
@@ -32,6 +38,12 @@ the_db.createIndex({
 the_db.createIndex({
   index: {
     fields: ["event_target"],
+  },
+});
+
+the_db.createIndex({
+  index: {
+    fields: ["event_purpose"],
   },
 });
 
