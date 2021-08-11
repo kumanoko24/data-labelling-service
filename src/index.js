@@ -35,11 +35,11 @@ router.post("/events/search", async (ctx, next) => {
 
     await next();
   } catch (err) {
-    ctx.throw(err);
+    ctx.throw(400, err.toString());
   }
 });
 
-router.post("/events", async (ctx, next) => {
+router.post("/event", async (ctx, next) => {
   try {
     ctx.response.body = {
       result: (await event_put(ctx.request.body)) || null,
@@ -47,7 +47,7 @@ router.post("/events", async (ctx, next) => {
 
     await next();
   } catch (err) {
-    ctx.throw(err);
+    ctx.throw(400, err.toString());
   }
 });
 
@@ -59,7 +59,7 @@ router.post("/dids/search", async (ctx, next) => {
 
     await next();
   } catch (err) {
-    ctx.throw(err);
+    ctx.throw(400, err.toString());
   }
 });
 
@@ -71,7 +71,7 @@ router.post("/labels/search", async (ctx, next) => {
 
     await next();
   } catch (err) {
-    ctx.throw(err);
+    ctx.throw(400, err.toString());
   }
 });
 

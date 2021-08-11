@@ -13,6 +13,19 @@ async function event_put({
   event_purpose,
 }) {
   try {
+    if (
+      [event_type, event_source, event_target].some(
+        (item) =>
+          item?.trim() === "" ||
+          item === undefined ||
+          item === null ||
+          Array.isArray(item) ||
+          JSON.stringify(item) === "{}"
+      )
+    ) {
+      throw "event_type, event_source, event_target must not be empty value, array or object";
+    }
+
     const _event_type = (event_type + "").trim();
     const _event_meta = event_meta || null;
     const _event_source = (event_source + "").trim();
@@ -65,7 +78,6 @@ async function event_put({
     return event_id;
   } catch (err) {
     console.error(err);
-
     throw err;
   }
 }

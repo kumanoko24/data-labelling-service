@@ -8,6 +8,18 @@ async function event_search(selector) {
       _selector = selector;
     }
 
+    if (_selector.event_id === undefined)
+      _selector.event_id = { $exists: true };
+
+    if (_selector.event_type === undefined)
+      _selector.event_type = { $exists: true };
+
+    if (_selector.event_source === undefined)
+      _selector.event_source = { $exists: true };
+
+    if (_selector.event_target === undefined)
+      _selector.event_target = { $exists: true };
+
     if (_selector["event_timestamp"] === undefined) {
       _selector["event_timestamp"] = { $gt: 0 };
     }

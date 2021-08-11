@@ -2,6 +2,14 @@ const { dids } = require("../dbs.js");
 
 async function did_search(selector) {
   try {
+    if (selector.name === undefined) {
+      selector.name = { $exists: true };
+    }
+
+    if (selector.labels === undefined) {
+      selector.labels = { $exists: true };
+    }
+
     const result = await dids.find({
       selector,
     });
