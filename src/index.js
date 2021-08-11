@@ -6,6 +6,8 @@ const { event_search } = require("./lib/event_search.js");
 const { event_put } = require("./lib/event_put.js");
 const { did_search } = require("./lib/did_search.js");
 const { label_search } = require("./lib/label_search.js");
+const { lineage_put } = require("./lib/lineage_put.js");
+const { lineage_search } = require("./lib/lineage_search.js");
 
 const Koa = require("koa");
 const Router = require("@koa/router");
@@ -67,6 +69,30 @@ router.post("/labels/search", async (ctx, next) => {
   try {
     ctx.response.body = {
       result: (await label_search(ctx.request.body)) || [],
+    };
+
+    await next();
+  } catch (err) {
+    ctx.throw(400, err.toString());
+  }
+});
+
+router.post("/lineage", async (ctx, next) => {
+  try {
+    ctx.response.body = {
+      result: (await lineage_put(ctx.request.body)) || [],
+    };
+
+    await next();
+  } catch (err) {
+    ctx.throw(400, err.toString());
+  }
+});
+
+router.post("/lineage/search", async (ctx, next) => {
+  try {
+    ctx.response.body = {
+      result: (await lineage_search(ctx.request.body)) || [],
     };
 
     await next();
