@@ -1,6 +1,6 @@
 {
   "name": "data-labelling-service",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "./src/index.js",
   "repository": "git@github.com:kumanoko24/data-labelling-service.git",
   "license": "Unlicense",

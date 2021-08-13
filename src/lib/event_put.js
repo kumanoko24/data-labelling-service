@@ -13,9 +13,12 @@ async function event_put({
   event_target,
   event_purpose,
   event_object,
+  event_timestamp,
 }) {
   try {
     const __event_id = event_id || null;
+
+    const _ts = event_timestamp || null;
 
     if (
       [event_type, event_source, event_target].some(
@@ -37,7 +40,10 @@ async function event_put({
     const _event_purpose = event_purpose || null;
 
     // put event
-    const timestamp = new Date();
+    const timestamp =
+      _ts !== null && !isNaN(parseInt(_ts, 10))
+        ? new Date(parseInt(_ts, 10))
+        : new Date();
     const _event_id = __event_id || timestamp.toISOString() + "_" + nanoid();
     await events.put({
       _id: _event_id,
