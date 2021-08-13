@@ -9,6 +9,13 @@ const { label_search } = require("./lib/label_search.js");
 const { lineage_put } = require("./lib/lineage_put.js");
 const { lineage_search } = require("./lib/lineage_search.js");
 
+module.exports.event_search = event_search;
+module.exports.event_put = event_put;
+module.exports.did_search = did_search;
+module.exports.label_search = label_search;
+module.exports.lineage_put = lineage_put;
+module.exports.lineage_search = lineage_search;
+
 const Koa = require("koa");
 const Router = require("@koa/router");
 

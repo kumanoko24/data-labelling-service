@@ -6,13 +6,17 @@ const { events, dids, labels } = require("../dbs.js");
 const get_hash = require("../common/hash.js");
 
 async function event_put({
+  event_id,
   event_type,
   event_meta,
   event_source,
   event_target,
   event_purpose,
+  event_object,
 }) {
   try {
+    const __event_id = event_id || null;
+
     if (
       [event_type, event_source, event_target].some(
         (item) =>
@@ -34,16 +38,17 @@ async function event_put({
 
     // put event
     const timestamp = new Date();
-    const event_id = timestamp.toISOString() + "_" + nanoid();
+    const _event_id = __event_id || timestamp.toISOString() + "_" + nanoid();
     await events.put({
-      _id: event_id,
-      event_id,
+      _id: _event_id,
+      event_id: _event_id,
       event_type: _event_type,
       event_meta: _event_meta,
       event_source: _event_source,
       event_target: _event_target,
       event_purpose: _event_purpose,
       event_timestamp: timestamp.valueOf(),
+      event_object: event_object || {},
     });
 
     // put did
@@ -56,7 +61,7 @@ async function event_put({
     if (did.labels[_event_type] === undefined)
       did.labels[_event_type] = { count: 0, event_ids: [] };
     did.labels[_event_type].count += 1;
-    did.labels[_event_type].event_ids.push(event_id);
+    did.labels[_event_type].event_ids.push(_event_id);
     await dids.put(did);
 
     // put labels
@@ -69,13 +74,13 @@ async function event_put({
     if (label.holders[_event_target] === undefined)
       label.holders[_event_target] = { count: 0, event_ids: [] };
     label.holders[_event_target].count += 1;
-    label.holders[_event_target].event_ids.push(event_id);
+    label.holders[_event_target].event_ids.push(_event_id);
     await labels.put(label);
 
     // go to event checks
     setImmediate(() => {});
 
-    return event_id;
+    return _event_id;
   } catch (err) {
     console.error(err);
     throw err;
