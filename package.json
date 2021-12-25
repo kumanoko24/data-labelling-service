@@ -1,22 +1,22 @@
 {
   "name": "data-labelling-service",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "./src/index.js",
   "repository": "git@github.com:kumanoko24/data-labelling-service.git",
   "license": "Unlicense",
   "devDependencies": {
-    "prettier": "^2.3.2"
+    "prettier": "^2.5.1"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
-    "@koa/router": "^10.1.0",
+    "@koa/router": "^10.1.1",
     "bottleneck": "^2.19.5",
     "dotenv": "^10.0.0",
-    "koa": "^2.13.1",
+    "koa": "^2.13.4",
     "koa-body": "^4.2.0",
-    "koa-compress": "^5.0.1",
+    "koa-compress": "^5.1.0",
     "lodash": "^4.17.21",
-    "nanoid": "^3.1.23",
+    "nanoid": "^3.1.30",
     "node-cache": "^5.1.2",
     "pouchdb": "^7.2.2",
     "pouchdb-find": "^7.2.2"
